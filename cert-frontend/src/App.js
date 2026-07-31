@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -23,27 +24,35 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <nav className="navbar">
-          <div className="nav-container">
-            <h1>Certificate System</h1>
-            {token && (
+        {token && (
+          <nav className="navbar">
+            <div className="nav-container">
+              <h1>JCertifier.io</h1>
               <button onClick={handleLogout} className="btn-logout">Logout</button>
-            )}
-          </div>
-        </nav>
+            </div>
+          </nav>
+        )}
 
         <Routes>
-          <Route path="/login" element={<Login onLogin={() => setToken(localStorage.getItem('token'))} />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/verify/:token" element={<Verify />} />
-          
+          <Route path="/login" element={
+            token ? <Navigate to="/" /> : <Login onLogin={() => setToken(localStorage.getItem('token'))} />
+          } />
+          <Route path="/register" element={
+            token ? <Navigate to="/" /> : <Register />
+          } />
+
           {token ? (
             <>
               <Route path="/" element={<Dashboard />} />
               <Route path="/event/:id" element={<EventDetail />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </>
           ) : (
-            <Route path="*" element={<Navigate to="/login" />} />
+            <>
+              <Route path="/" element={<Landing />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </>
           )}
         </Routes>
       </div>
