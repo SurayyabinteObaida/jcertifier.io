@@ -27,11 +27,14 @@ def regenerate_certificates(event_id: int, request: GenerateCertificatesRequest,
         raise HTTPException(status_code=404, detail="Template not found")
     
     # Delete old certificates
+    import os
     old_certs = db.query(IssuedCertificate).filter(IssuedCertificate.event_id == event_id).all()
     for old in old_certs:
-        import os
-        if old.pdf_file_path and os.path.exists(old.pdf_file_path):
-            os.remove(old.pdf_file_path)
+        try:
+            if old.pdf_file_path and os.path.exists(old.pdf_file_path):
+                os.remove(old.pdf_file_path)
+        except:
+            pass
         db.delete(old)
     
     # Reset participant status
