@@ -26,7 +26,7 @@ function Landing() {
             color: '#a8b8ff',
             marginBottom: '1.5rem'
           }}>
-            Trusted by organizations worldwide
+            Trusted by organizations
           </div>
           <h1 style={{
             fontSize: '3.2rem',
@@ -131,10 +131,10 @@ function Landing() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
           {[
-            { step: '01', title: 'Create Event', desc: 'Set up your workshop, seminar, or conference with all details', icon: '📋' },
-            { step: '02', title: 'Add Participants', desc: 'Upload a CSV file with participant names, emails, and roles', icon: '👥' },
-            { step: '03', title: 'Choose Template', desc: 'Pick from Classic Blue, Elegant Gold, or Modern Teal designs', icon: '🎨' },
-            { step: '04', title: 'Generate & Share', desc: 'One click generates certificates with QR codes for all participants', icon: '🚀' },
+            { step: '01', title: 'Create Event', desc: 'Set up your workshop, seminar, or conference with all details', icon: '01' },
+{ step: '02', title: 'Add Participants', desc: 'Upload a CSV file with participant names, emails, and roles', icon: '02' },
+{ step: '03', title: 'Choose Template', desc: 'Pick from Classic Blue, Elegant Gold, or Modern Teal designs', icon: '03' },
+{ step: '04', title: 'Generate & Share', desc: 'One click generates certificates with QR codes for all participants', icon: '04' },  
           ].map((item, i) => (
             <div key={i} style={{
               textAlign: 'center',
@@ -148,7 +148,7 @@ function Landing() {
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{item.icon}</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#4361ee', marginBottom: '1rem' }}>{item.icon}</div>
               <div style={{ fontSize: '0.8rem', fontWeight: '700', color: '#4361ee', marginBottom: '0.5rem' }}>STEP {item.step}</div>
               <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '0.7rem' }}>{item.title}</h3>
               <p style={{ fontSize: '0.88rem', color: '#888', lineHeight: '1.5' }}>{item.desc}</p>
